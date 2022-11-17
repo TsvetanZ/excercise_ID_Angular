@@ -1,18 +1,45 @@
-import { NgModule } from '@angular/core';
+
+import { Injectable, InjectionToken, NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from'@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { TestComponent } from './test/test.component';
+import { UserListComponent } from './user-list/user-list.component';
+//import { UserService } from './user.service';
+//import { TestComponent } from './test/test.component';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class MyClass {
+  constructor() {
+    console.log('Nameless call was constructed')
+  }
+}
+export const myCustomToken = new InjectionToken ('Test');
+//const myProvider: Provider = {
+//  //useValue: 123,
+//  provide: myCustomToken,
+//  useClass: MyClass,
+//  //provide: MyClass
+//}
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    UserListComponent,
+   // TestComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    //UserService,
+    //MyClass, // -> {useClass: MyClass, provide: MyClass}
+    //myProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
